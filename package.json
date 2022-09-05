@@ -1,0 +1,23 @@
+{
+  "name": "product-landing-page",
+  "version": "1.0.0",
+  "description": "a bootstrap/sass product-landing-page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielmason89/product-landing-page.git"
+  },
+  "author": "Daniel Mason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielmason89/product-landing-page/issues"
+  },
+  "homepage": "https://github.com/danielmason89/product-landing-page#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1"
+  }
+}
