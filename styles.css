@@ -2,6 +2,19 @@ section #hero {
   padding: 60px 0;
 }
 
+.clock {
+  font-size: 1em;
+  text-align: center;
+  margin: 20px auto;
+  color: rgba(216, 88, 24);
+  font-family: arial;
+}
+
+.clock span {
+  padding: 5px;
+  border: solid 0.0023em #444;
+}
+
 .pokedex-logo {
   margin: 2rem;
   padding: 0.5rem;
