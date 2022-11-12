@@ -3,8 +3,6 @@ const now = new Date();
 
 const tick = () => {
   const now = new Date();
-  const h = now.getHours();
-  const m = now.getMinutes();
 
   const html = `
   <span>${dateFns.format(now, "MMMM dddd Do / YYYY")}</span>
