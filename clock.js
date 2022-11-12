@@ -1,4 +1,5 @@
 const clock = document.querySelector(".clock");
+const now = new Date();
 
 const tick = () => {
   const now = new Date();
@@ -6,8 +7,8 @@ const tick = () => {
   const m = now.getMinutes();
 
   const html = `
-  <span>${h}</span> :
-  <span>${m}</span>
+  <span>${dateFns.format(now, "MMMM dddd Do / YYYY")}</span>
+  <span>${dateFns.format(now, "h : mm : ss a")}</span>
   `;
 
   clock.innerHTML = html;
