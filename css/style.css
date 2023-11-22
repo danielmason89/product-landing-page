@@ -83,6 +83,10 @@ section #hero {
   padding-bottom: 1rem;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (max-width: 991.98px) {
   .content .bg {
     height: 500px;

@@ -1,3 +1,13 @@
+import {
+  loginButton,
+  logoutButton,
+  signupButton,
+  cart,
+  welcomeMessage,
+  errorMessageElement,
+  formLoginBtn,
+  formSignupBtn,
+} from "./ui";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -19,45 +29,73 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
-const toolTips = document.querySelectorAll(".tt");
-const clock = document.querySelector(".clock");
-const firebaseConfig = {
+// Init Firebase app
+const firebaseApp = initializeApp({
   apiKey: "AIzaSyAtn6YjEQ8-AfXW2UmJN40jSLhCA-RkZq0",
   authDomain: "pokedex-shop-app.firebaseapp.com",
   projectId: "pokedex-shop-app",
   storageBucket: "pokedex-shop-app.appspot.com",
   messagingSenderId: "416207035121",
   appId: "1:416207035121:web:a7144500685f6c84a12750",
-};
-const errorMessageElement = document.getElementById("error-message");
-
-// Init Firebase app
-const app = initializeApp(firebaseConfig);
+});
 
 // Init Firebase services
-const db = getFirestore(app);
-const auth = getAuth(app);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 // connectAuthEmulator(auth, "http://localhost:9899");
 
-const monitorAuthState = async () => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log(user);
-    } else {
-    }
-  });
-};
-monitorAuthState();
-
 // ***Signup-Login-Logout Flow***
+// Login
+document.addEventListener("DOMContentLoaded", () => {
+  if (formLoginBtn) {
+    formLoginBtn.addEventListener("click", loginEmailPassword);
+  }
+  async function loginEmailPassword(e) {
+    e.preventDefault();
+    const loginEmail = document.getElementById("email").value;
+    const loginPassword = document.getElementById("password").value;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      const user = userCredential.user;
+      console.log("User logged in:", user);
+      document.querySelector("form").reset();
+      errorMessageElement.textContent = "";
+      // Redirect to login or other page if needed
+      window.location.href = "shop.html";
+    } catch (error) {
+      console.error(error.message);
+      // Handle specific error messages
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessageElement.textContent = "Invalid email address.";
+          break;
+        case "auth/user-not-found":
+          errorMessageElement.textContent = "User not found.";
+          break;
+        case "auth/wrong-password":
+          errorMessageElement.textContent = "Incorrect password.";
+          break;
+        default:
+          errorMessageElement.textContent =
+            "An error occurred. Please try again.";
+      }
+    }
+  }
+});
+
 // SignUp
 document.addEventListener("DOMContentLoaded", () => {
-  const signupButton = document.getElementById("signup-button");
-  if (signupButton) {
-    signupButton.addEventListener("click", signupUser);
+  if (formSignupBtn) {
+    formSignupBtn.addEventListener("click", signupUser);
   }
-  function signupUser(e) {
+  async function signupUser(e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -73,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Invalid input. Please check your data.";
       return;
     }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // User created successfully
@@ -114,50 +153,74 @@ function validateField(field) {
   return field != null && field.trim().length > 0;
 }
 
-// Login
+// Logout
 document.addEventListener("DOMContentLoaded", () => {
-  const loginbtn = document.getElementById("loginbtn");
-  const loginEmailPassword = async (e) => {
-    e.preventDefault();
-    const loginEmail = document.getElementById("email").value;
-    const loginPassword = document.getElementById("password").value;
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      const user = userCredential.user;
-      console.log("User logged in:", user);
-      document.querySelector("form").reset();
-      errorMessageElement.textContent = "";
-      // Redirect to login or other page if needed
-      window.location.href = "shop.html";
-    } catch (error) {
-      console.error(error.message);
-      // Handle specific error messages
-      switch (error.code) {
-        case "auth/invalid-email":
-          errorMessageElement.textContent = "Invalid email address.";
-          break;
-        case "auth/user-not-found":
-          errorMessageElement.textContent = "User not found.";
-          break;
-        case "auth/wrong-password":
-          errorMessageElement.textContent = "Incorrect password.";
-          break;
-        default:
-          errorMessageElement.textContent =
-            "An error occurred. Please try again.";
-      }
-    }
-  };
-  loginbtn.addEventListener("click", loginEmailPassword);
+  if (logoutButton) {
+    logoutButton.addEventListener("click", logout);
+  }
+  async function logout() {
+    await signOut(auth);
+  }
 });
 
-// Logout
+// Function to hide an element
+function hideElement(element) {
+  element.classList.add("hidden");
+}
 
+// Function to show an element
+function showElement(element) {
+  element.classList.remove("hidden");
+}
+
+// Function to hide UI elements
+function hideElements() {
+  if (loginButton) hideElement(loginButton);
+  if (signupButton) hideElement(signupButton);
+  if (welcomeMessage) showElement(welcomeMessage);
+  if (logoutButton) showElement(logoutButton);
+  if (cart) showElement(cart);
+}
+
+// Function to show UI elements
+function showElements() {
+  if (loginButton) showElement(loginButton);
+  if (signupButton) showElement(signupButton);
+  if (welcomeMessage) hideElement(welcomeMessage);
+  if (logoutButton) hideElement(logoutButton);
+  if (cart) hideElement(cart);
+}
+
+const monitorAuthState = async () => {
+  onAuthStateChanged(auth, (user) => {
+    const loginButton = document.getElementById("login-button");
+    const logoutButton = document.getElementById("logout-button");
+    if (user) {
+      hideElements();
+      console.log(user);
+    } else {
+      showElements();
+    }
+  });
+};
+monitorAuthState();
+
+// Update the onAuthStateChanged callback
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in
+    if (logoutButton) logoutButton.style.display = "block"; // Show the logout button
+    if (loginButton) loginButton.style.display = "none"; // Hide the login button
+    if (signupButton) signupButton.style.display = "none"; // Hide the signup button
+  } else {
+    // User is signed out
+    if (logoutButton) logoutButton.style.display = "none"; // Hide the logout button
+    if (loginButton) loginButton.style.display = "block"; // Show the login button
+    if (signupButton) signupButton.style.display = "block"; // Show the signup button
+  }
+});
+
+// ***Shop Functionality***
 // Collection ref
 const colRef = collection(db, "pokedex");
 
@@ -229,106 +292,3 @@ onSnapshot(docRef, (doc) => {
 //     updateForm.reset();
 //   });
 // });
-
-// ***Send Email Logic***
-document.addEventListener("DOMContentLoaded", function () {
-  const questionForm = document.getElementById("contact-form");
-
-  if (questionForm) {
-    questionForm.addEventListener("submit", function (e) {
-      e.preventDefault(); // Prevent the default form submission
-      sendMail();
-    });
-  }
-});
-
-function validateForm(params) {
-  // Add your validation logic here
-  // Example: Check if the name, email, and message are not empty
-  return params.name && params.email && params.message;
-}
-
-function sendMail() {
-  let params = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    message: document.getElementById("message").value,
-  };
-  if (!validateForm(params)) {
-    alert("Please fill in all the fields.");
-    return; // Stop the function if validation fails
-  }
-  const serviceID = "service_53r37qr";
-  const templateID = "template_3ln9oxq";
-
-  emailjs
-    .send(serviceID, templateID, params)
-    .then((res) => {
-      console.log("success", res.status);
-      // Clear the form fields only after successful submission
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("message").value = "";
-      alert("Your Message sent successfully");
-    })
-    .catch((err) => console.log(err));
-}
-
-// *** Clock Logic***
-toolTips.forEach((t) => {
-  new bootstrap.Tooltip(t);
-});
-
-const tick = () => {
-  const now = new Date();
-
-  const html = `
-  <span>${dateFns.format(now, "MMMM dddd Do / YY")}</span>
-  <span>${dateFns.format(now, "h:mm a")}</span>
-  `;
-
-  clock.innerHTML = html;
-};
-
-setInterval(tick, 1000);
-
-// ***Quiz Logic***
-document.addEventListener("DOMContentLoaded", function () {
-  const quizForm = document.querySelector(".quiz-form");
-  const correctAnswers = ["B", "B", "B", "B"];
-  const result = document.querySelector(".result");
-  if (quizForm) {
-    quizForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      let score = 0;
-      const userAnswers = [
-        quizForm.q1.value,
-        quizForm.q2.value,
-        quizForm.q3.value,
-        quizForm.q4.value,
-      ];
-      // Check answer
-      userAnswers.forEach((answer, index) => {
-        if (answer === correctAnswers[index]) {
-          score += 25;
-        }
-      });
-      // show result
-      scrollTo(0, 0);
-
-      result.classList.remove("d-none");
-      let userResult = 0;
-      const timer = setInterval(() => {
-        {
-          result.querySelector("span").textContent = `${userResult}%`;
-          if (userResult === score) {
-            clearInterval(timer);
-          } else {
-            userResult++;
-          }
-        }
-      }, 10);
-    });
-  }
-});
