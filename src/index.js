@@ -8,6 +8,7 @@ import {
   formLoginBtn,
   formSignupBtn,
 } from "./ui";
+import addCart from "./addCart";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -221,6 +222,11 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // ***Shop Functionality***
+
+// Adding an item to the cart
+document.addEventListener("DOMContentLoaded", () => {
+  addCart();
+});
 // Collection ref
 const colRef = collection(db, "pokedex");
 
