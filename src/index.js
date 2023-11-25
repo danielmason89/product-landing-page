@@ -8,7 +8,9 @@ import {
   formLoginBtn,
   formSignupBtn,
 } from "./ui";
-import addCart from "./addCart";
+import addCart from "./addCart.js";
+import { updateCartTotal } from "./updateCartTotal";
+import { renderCart, clearCart } from "./shoppingCart.js";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -224,8 +226,29 @@ onAuthStateChanged(auth, (user) => {
 // ***Shop Functionality***
 
 // Adding an item to the cart
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(function () {
   addCart();
+
+  $("#exampleModal").on("show.bs.modal", function () {
+    renderCart();
+  });
+});
+
+// Rendering an items in the cart
+$("#exampleModal").on("show.bs.modal", function () {
+  console.log("Modal is being shown. Calling renderCart...");
+  renderCart();
+});
+
+$(document).ready(function () {
+  // Assuming renderCart is imported or defined in this scope
+  renderCart();
+});
+
+$(document).ready(function () {
+  $("#clearCartButton").click(function () {
+    clearCart(updateCartTotal, renderCart);
+  });
 });
 // Collection ref
 const colRef = collection(db, "pokedex");

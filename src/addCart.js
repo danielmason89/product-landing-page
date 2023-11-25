@@ -1,25 +1,58 @@
+import { updateCartTotal } from "./updateCartTotal";
+
 export default function addCart() {
   $(document).ready(function () {
-    let itemCount = localStorage.getItem("itemCount") || 0;
-    updateCartTotal(itemCount);
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
     $(".addItemBtn").click(function () {
-      itemCount++;
-      updateCartTotal(itemCount);
-      localStorage.setItem("itemCount", itemCount);
+      const card = $(this).closest(".card");
+      const itemImages = card
+        .find("img")
+        .map(function () {
+          return $(this).attr("src");
+        })
+        .get();
 
+      const itemTitle = card
+        .closest(".container")
+        .prev("header")
+        .find("h1")
+        .text()
+        .trim();
+      const itemPrice = card.find(".card-text").text();
+
+      let existingItem = cartItems.find((item) => item.title === itemTitle);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cartItems.push({
+          title: itemTitle,
+          images: itemImages,
+          price: itemPrice,
+          quantity: 1,
+        });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      updateCartTotal(cartItems);
+
+      // Show toast notification
       const cartToast = new bootstrap.Toast($("#cartToast")[0]);
       cartToast.show();
     });
 
-    $("#clearCartButton").click(function () {
-      itemCount = 0;
-      updateCartTotal(itemCount);
-      localStorage.setItem("itemCount", itemCount);
-    });
-
-    function updateCartTotal(count) {
-      $("#cartTotal").text(count);
+    function updateCartTotal(cartItems) {
+      if (cartItems.length === 0) {
+        // If there are no items in the cart, display nothing or 0
+        $("#cartTotal").text("");
+      } else {
+        // If there are items in the cart, calculate the total quantity
+        let totalQuantity = cartItems.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+        $("#cartTotal").text(totalQuantity);
+      }
     }
   });
 }
