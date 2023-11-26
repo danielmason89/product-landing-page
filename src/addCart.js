@@ -1,4 +1,4 @@
-import { updateCartTotal } from "./updateCartTotal";
+import { renderCart } from "./shoppingCart";
 
 export default function addCart() {
   $(document).ready(function () {
@@ -19,7 +19,11 @@ export default function addCart() {
         .find("h1")
         .text()
         .trim();
-      const itemPrice = card.find(".card-text").text();
+      let itemPrice = card.find(".card-text").text();
+
+      // Extract the numeric part from the price string
+      const priceNumeric = itemPrice.replace(/[^0-9.]/g, "");
+      itemPrice = parseFloat(priceNumeric);
 
       let existingItem = cartItems.find((item) => item.title === itemTitle);
       if (existingItem) {
@@ -33,9 +37,10 @@ export default function addCart() {
         });
       }
 
+      console.log("Items after adding to cart:", cartItems);
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       updateCartTotal(cartItems);
-
+      renderCart();
       // Show toast notification
       const cartToast = new bootstrap.Toast($("#cartToast")[0]);
       cartToast.show();

@@ -1,8 +1,12 @@
 import { AuthErrorCodes } from "firebase/auth";
+import emailjs from "@emailjs/browser";
 
 // Clock/Misc UI
 export const toolTips = document.querySelectorAll(".tt");
 export const clock = document.querySelector(".clock");
+
+// Email JS
+emailjs.init("teumzvK_dd_tm2EDs");
 
 // Auth Flow UI
 // To get to the auth flow
@@ -121,4 +125,53 @@ function sendMail() {
       alert("Your Message sent successfully");
     })
     .catch((err) => console.log(err));
+}
+
+// ***Checkout Form Validation***
+export function initializeFormValidation() {
+  const form = document.getElementById("checkoutForm");
+  form.addEventListener("submit", handleFormSubmit, false);
+}
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const ccNumber = document.getElementById("cc-number");
+
+  // Validate Credit Card Number
+  if (!validateCreditCardNumber(ccNumber.value)) {
+    ccNumber.classList.add("is-invalid");
+  } else {
+    ccNumber.classList.remove("is-invalid");
+  }
+
+  if (form.checkValidity() && validateCreditCardNumber(ccNumber.value)) {
+    // Prepare form data for email
+    const formData = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      email: form.email.value,
+      // ...other form fields...
+      ccNumber: "**** **** **** " + ccNumber.value.slice(-4), // Masked CC number
+    };
+
+    // Send email
+    emailjs.send("your_service_id", "your_template_id", formData).then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+        // Handle success (show confirmation message, etc.)
+      },
+      function (error) {
+        console.log("FAILED...", error);
+        // Handle errors (show error message, etc.)
+      }
+    );
+  } else {
+    form.classList.add("was-validated"); // Show validation errors
+  }
+}
+
+function validateCreditCardNumber(number) {
+  const regex = /^[0-9]{16}$/;
+  return regex.test(number);
 }

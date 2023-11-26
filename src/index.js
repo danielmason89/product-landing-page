@@ -7,10 +7,10 @@ import {
   errorMessageElement,
   formLoginBtn,
   formSignupBtn,
+  initializeFormValidation,
 } from "./ui";
 import addCart from "./addCart.js";
-import { updateCartTotal } from "./updateCartTotal";
-import { renderCart, clearCart } from "./shoppingCart.js";
+import { renderCart } from "./shoppingCart.js";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -224,7 +224,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // ***Shop Functionality***
-
 // Adding an item to the cart
 $(document).ready(function () {
   addCart();
@@ -245,11 +244,9 @@ $(document).ready(function () {
   renderCart();
 });
 
-$(document).ready(function () {
-  $("#clearCartButton").click(function () {
-    clearCart(updateCartTotal, renderCart);
-  });
-});
+// Checkout Form Validation
+document.addEventListener("DOMContentLoaded", initializeFormValidation);
+
 // Collection ref
 const colRef = collection(db, "pokedex");
 
