@@ -12,6 +12,7 @@ import {
 import addCart from "./addCart.js";
 import { renderCart } from "./shoppingCart.js";
 import { initializeApp } from "firebase/app";
+// import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import {
   getFirestore,
   collection,
@@ -34,6 +35,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 // Init Firebase app
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyAtn6YjEQ8-AfXW2UmJN40jSLhCA-RkZq0",
@@ -42,12 +44,24 @@ const firebaseApp = initializeApp({
   storageBucket: "pokedex-shop-app.appspot.com",
   messagingSenderId: "416207035121",
   appId: "1:416207035121:web:a7144500685f6c84a12750",
+  databaseURL: "pokedex-shop-app-default-rtdb.firebaseio.com",
 });
+
+// const appCheck = initializeAppCheck(firebaseApp, {
+//   provider: new ReCaptchaV3Provider("abcdefghijklmnopqrstuvwxy-1234567890abcd"),
+
+//   // Optional argument. If true, the SDK automatically refreshes App Check
+//   // tokens as needed.
+//   isTokenAutoRefreshEnabled: true,
+// });
 
 // Init Firebase services
 const db = getFirestore(firebaseApp);
+const database = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
 // connectAuthEmulator(auth, "http://localhost:9899");
+
+console.log("realtime-database", database);
 
 // ***Signup-Login-Logout Flow***
 // Login

@@ -130,7 +130,17 @@ function sendMail() {
 // ***Checkout Form Validation***
 export function initializeFormValidation() {
   const form = document.getElementById("checkoutForm");
-  form.addEventListener("submit", handleFormSubmit, false);
+  const ccNumber = document.getElementById("cc-number");
+
+  if (form && ccNumber) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        handleFormSubmit(event, form, ccNumber);
+      },
+      false
+    );
+  }
 }
 
 function handleFormSubmit(event) {
@@ -146,20 +156,37 @@ function handleFormSubmit(event) {
   }
 
   if (form.checkValidity() && validateCreditCardNumber(ccNumber.value)) {
+    const orderDetails = getOrderDetails();
+
+    console.log("Order Details:", orderDetails);
     // Prepare form data for email
     const formData = {
       firstName: form.firstName.value,
       lastName: form.lastName.value,
       email: form.email.value,
-      // ...other form fields...
-      ccNumber: "**** **** **** " + ccNumber.value.slice(-4), // Masked CC number
+      address: form.address.value,
+      phoneNumber: form.phoneNumber.value,
+      ccNumber: ccNumber.value.slice(-4), // Masked CC number
+      orderDetails: orderDetails.details, // Get order details
+      totalCost: orderDetails.totalCost,
     };
 
+    console.log("FormData:", formData);
     // Send email
-    emailjs.send("your_service_id", "your_template_id", formData).then(
+    emailjs.send("service_yrwx9x4", "template_tx9keul", formData).then(
       function (response) {
         console.log("SUCCESS!", response.status, response.text);
         // Handle success (show confirmation message, etc.)
+
+        // Clear the form
+        form.reset();
+        form.classList.remove("was-validated");
+
+        // Empty the cart in local storage
+        localStorage.setItem("cartItems", JSON.stringify([]));
+
+        // Redirect to the home page (index.html)
+        window.location.href = "index.html";
       },
       function (error) {
         console.log("FAILED...", error);
@@ -169,6 +196,24 @@ function handleFormSubmit(event) {
   } else {
     form.classList.add("was-validated"); // Show validation errors
   }
+}
+
+function getOrderDetails() {
+  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  let details = "";
+  let totalCost = 0;
+
+  cartItems.forEach((item) => {
+    let itemTotal = item.price * item.quantity;
+    totalCost += itemTotal;
+    details += `${item.title} - Quantity: ${
+      item.quantity
+    }, Price: $${item.price.toFixed(2)} each, Total: $${itemTotal.toFixed(
+      2
+    )}\n`;
+  });
+
+  return { details, totalCost: totalCost.toFixed(2) };
 }
 
 function validateCreditCardNumber(number) {
