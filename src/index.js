@@ -302,24 +302,109 @@ function savePurchaseToDatabase(userId, formData) {
   return set(newPurchaseRef, formData);
 }
 
+function checkFormValidity() {
+  const form = document.getElementById("checkoutForm");
+
+  // Individual field validation
+  const isValidFirstName = form.firstName.value.trim() !== "";
+  const isValidLastName = form.lastName.value.trim() !== "";
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value);
+  const isValidPhoneNumber = /^\+?\d{10,15}$/.test(form.phoneNumber.value); // Adjust regex according to phone number format you expect
+  const isValidAddress = form.address.value.trim() !== "";
+  const isValidCCName = form["cc-name"].value.trim() !== "";
+  const isValidCCNumber = validateCreditCardNumber(form["cc-number"].value);
+  const isValidCCExpiration = validateExpirationDate(
+    form["cc-expiration"].value
+  );
+  const isValidCCCVV = /^\d{3,4}$/.test(form["cc-cvv"].value); // 3 or 4 digits CVV
+
+  // Mark fields as invalid if necessary
+  updateFieldValidity(form.firstName, isValidFirstName);
+  updateFieldValidity(form.lastName, isValidLastName);
+  updateFieldValidity(form.email, isValidEmail);
+  updateFieldValidity(form.phoneNumber, isValidPhoneNumber);
+  updateFieldValidity(form.address, isValidAddress);
+  updateFieldValidity(form["cc-name"], isValidCCName);
+  updateFieldValidity(form["cc-number"], isValidCCNumber);
+  updateFieldValidity(form["cc-expiration"], isValidCCExpiration);
+  updateFieldValidity(form["cc-cvv"], isValidCCCVV);
+
+  // Return overall form validity
+  return (
+    isValidFirstName &&
+    isValidLastName &&
+    isValidEmail &&
+    isValidPhoneNumber &&
+    isValidAddress &&
+    isValidCCName &&
+    isValidCCNumber &&
+    isValidCCExpiration &&
+    isValidCCCVV
+  );
+}
+
+function updateFieldValidity(field, isValid) {
+  if (isValid) {
+    field.classList.remove("is-invalid");
+  } else {
+    field.classList.add("is-invalid");
+  }
+}
+
+// Validate Credit Card Number
+function validateCreditCardNumber(number) {
+  const regex = /^[0-9]{16}$/;
+  return regex.test(number);
+}
+
+// Validate Expiration Date
+function validateExpirationDate(date) {
+  const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+  const isValidFormat = regex.test(date);
+
+  if (!isValidFormat) return false;
+
+  const currentDate = new Date();
+  const [month, year] = date.split("/").map((num) => parseInt(num, 10));
+  const expirationDate = new Date(`20${year}`, month - 1);
+
+  return expirationDate > currentDate;
+}
+
 async function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.target;
   const ccNumber = document.getElementById("cc-number");
+  const ccExpiration = document.getElementById("cc-expiration");
+
+  let isValid = true;
 
   // Validate Credit Card Number
   if (!validateCreditCardNumber(ccNumber.value)) {
     ccNumber.classList.add("is-invalid");
+    isValid = false;
   } else {
     ccNumber.classList.remove("is-invalid");
   }
 
-  if (form.checkValidity() && validateCreditCardNumber(ccNumber.value)) {
+  // Validate Expiration Date
+  if (!validateExpirationDate(ccExpiration.value)) {
+    ccExpiration.classList.add("is-invalid");
+    isValid = false;
+  } else {
+    ccExpiration.classList.remove("is-invalid");
+  }
+
+  if (checkFormValidity() && validateCreditCardNumber(ccNumber.value)) {
     const orderDetails = getOrderDetails();
     const userId = auth.currentUser ? auth.currentUser.uid : null;
     if (!userId) {
       // Handle the case where the user is not logged in
       console.error("User is not authenticated");
+      return;
+    }
+
+    if (!checkFormValidity() || !isValid) {
       return;
     }
 
@@ -348,7 +433,8 @@ async function handleFormSubmit(event) {
             console.log("Email sent successfully", response);
             form.reset();
             localStorage.setItem("cartItems", JSON.stringify([]));
-            window.location.href = "index.html";
+            // Inside your handleFormSubmit function, after the email sending promise is resolved
+            window.location.href = "index.html?purchase=success";
           })
           .catch((error) => console.error("Email sending failed", error));
       })
@@ -372,11 +458,6 @@ function getOrderDetails() {
   });
 
   return { details, totalCost: totalCost.toFixed(2) };
-}
-
-function validateCreditCardNumber(number) {
-  const regex = /^[0-9]{16}$/;
-  return regex.test(number);
 }
 
 // ***Firestore Database Logic-Testing
@@ -404,50 +485,10 @@ onSnapshot(q, (snapshot) => {
   console.log(pokedex);
 });
 
-// Adding documents - real time collection data
-// const addBookForm = document.querySelector(".add");
-// addBookForm.addEventListener("submit", (e) => {
-//   e.preventDefault;
-//   addDoc(colRef, {
-//     model: addPokedexForm.model.value,
-//     version: addPokedexForm.version.value,
-//     createdAt: serverTimestamp(),
-//   }).then(() => {
-//     addBookForm.reset();
-//   });
-// });
-
-// Delete documents
-// const deleteBookForm = document.querySelector(".delete");
-// deleteBookForm.deleteEventListener("submit", (e) => {
-//   e.preventDefault;
-//   const docRef = doc(db, "pokedex", deleteBookForm.id.value);
-//   deleteDoc(docRef).then(() => {
-//     deleteBookForm.requestFullscreen();
-//   });
-// });
-
 // Get a single id document
 const docRef = doc(db, "pokedex", "2X3qaNxZ7DN7WDsf9FNK");
-
-// getDoc(docRef).then((doc) => {
-//   console.log(doc.data(), doc.id);
-// });
 
 // Realtime listener
 onSnapshot(docRef, (doc) => {
   console.log(doc.data(), doc.id);
 });
-
-// Update a document
-// const updateForm = document.querySelector(".update");
-// updateForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   const docRef = doc(db, "pokedex", updateForm.id.value);
-//   updateDoc(docRef, {
-//     version: "updated title",
-//   }).then(() => {
-//     updateForm.reset();
-//   });
-// });
