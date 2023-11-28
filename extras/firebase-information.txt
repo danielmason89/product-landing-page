@@ -1,0 +1,68 @@
+***Important - this is the link to the database: "https://console.firebase.google.com/u/0/project/pokedex-shop-app/database/pokedex-shop-app-default-rtdb/data/~2Fpurchases"
+and below is all the data that is currently inside of the firebase realtime database for this app.
+
+purchases
+fR9WjQBT1VO5oJO288rIJUKq9bB3
+-NkIuCAd7RrEDFvM8hgX
+address
+:
+"123 main st."
+ccNumber
+:
+"1234"
+email
+:
+"danmasson0@gmail.com"
+firstName
+:
+"dan"
+lastName
+:
+"test"
+orderDetails
+:
+"Pokedex SE | Standard Edition - Quantity: 3, Price: $80.00 each, Total: $240.00 "
+phoneNumber
+:
+"111-111-1111"
+timestamp
+totalCost
+:
+"240.00"
+-NkMKIGyoI0D0_UT_9UD
+address
+:
+"123 main st."
+ccNumber
+:
+"1234"
+email
+:
+"danmasson0@gmail.com"
+firstName
+:
+"dan"
+lastName
+:
+"test"
+orderDetails
+:
+"Pokedex SE | Standard Edition - Quantity: 6, Price: $80.00 each, Total: $480.00 Pokedex S | Superior Edition - Quantity: 7, Price: $160.00 each, Total: $1120.00 "
+phoneNumber
+:
+"111-111-1111"
+timestamp
+totalCost
+:
+"1600.00"
+-NkMOpfKmwZrqAMFFNEd
+address
+:
+"1234 main st."
+ccNumber
+:
+"1234"
+email
+:
+"danmasson0@gmail.com"
+
