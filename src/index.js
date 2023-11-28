@@ -7,11 +7,11 @@ import {
   errorMessageElement,
   formLoginBtn,
   formSignupBtn,
-  initializeFormValidation,
 } from "./ui";
 import addCart from "./addCart.js";
 import { renderCart } from "./shoppingCart.js";
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 // import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import {
   getFirestore,
@@ -27,6 +27,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
+import emailjs from "@emailjs/browser";
 import {
   getAuth,
   connectAuthEmulator,
@@ -35,17 +36,19 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, push } from "firebase/database";
 // Init Firebase app
 const firebaseApp = initializeApp({
   apiKey: "AIzaSyAtn6YjEQ8-AfXW2UmJN40jSLhCA-RkZq0",
   authDomain: "pokedex-shop-app.firebaseapp.com",
+  databaseURL: "https://pokedex-shop-app-default-rtdb.firebaseio.com",
   projectId: "pokedex-shop-app",
   storageBucket: "pokedex-shop-app.appspot.com",
   messagingSenderId: "416207035121",
   appId: "1:416207035121:web:a7144500685f6c84a12750",
   databaseURL: "pokedex-shop-app-default-rtdb.firebaseio.com",
 });
+emailjs.init("teumzvK_dd_tm2EDs");
 
 // const appCheck = initializeAppCheck(firebaseApp, {
 //   provider: new ReCaptchaV3Provider("abcdefghijklmnopqrstuvwxy-1234567890abcd"),
@@ -56,12 +59,12 @@ const firebaseApp = initializeApp({
 // });
 
 // Init Firebase services
+const analytics = getAnalytics(firebaseApp);
 const db = getFirestore(firebaseApp);
-const database = getDatabase(firebaseApp);
 const auth = getAuth(firebaseApp);
 // connectAuthEmulator(auth, "http://localhost:9899");
 
-console.log("realtime-database", database);
+console.log("analytics", analytics);
 
 // ***Signup-Login-Logout Flow***
 // Login
@@ -258,9 +261,125 @@ $(document).ready(function () {
   renderCart();
 });
 
-// Checkout Form Validation
-document.addEventListener("DOMContentLoaded", initializeFormValidation);
+// *** Firebase Realtime Database logic
+// Collection ref
+const realtimeDatabase = getDatabase();
+console.log("realtimeData:", realtimeDatabase);
+// const reference = ref(realtimeDatabase, "users/" + userId);
 
+// function writeUserData(userId, email) {
+//   set(reference, {
+//     email: email,
+//   });
+// }
+
+// ***Checkout Form Validation & Firebase Realtime Database Implementation***
+function initializeFormValidation() {
+  const form = document.getElementById("checkoutForm");
+  const ccNumber = document.getElementById("cc-number");
+
+  if (form && ccNumber) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        handleFormSubmit(event, form, ccNumber);
+      },
+      false
+    );
+  }
+}
+
+// Checkout Form Validation
+document.addEventListener("DOMContentLoaded", function () {
+  initializeFormValidation();
+});
+
+function savePurchaseToDatabase(userId, formData) {
+  const db = getDatabase();
+  const purchaseRef = ref(db, "purchases/" + userId);
+  console.log("purchaseRef:", purchaseRef);
+  const newPurchaseRef = push(purchaseRef);
+  return set(newPurchaseRef, formData);
+}
+
+async function handleFormSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const ccNumber = document.getElementById("cc-number");
+
+  // Validate Credit Card Number
+  if (!validateCreditCardNumber(ccNumber.value)) {
+    ccNumber.classList.add("is-invalid");
+  } else {
+    ccNumber.classList.remove("is-invalid");
+  }
+
+  if (form.checkValidity() && validateCreditCardNumber(ccNumber.value)) {
+    const orderDetails = getOrderDetails();
+    const userId = auth.currentUser ? auth.currentUser.uid : null;
+    if (!userId) {
+      // Handle the case where the user is not logged in
+      console.error("User is not authenticated");
+      return;
+    }
+
+    console.log("Order Details:", orderDetails);
+    // Prepare form data for email
+    const formData = {
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      email: form.email.value,
+      address: form.address.value,
+      phoneNumber: form.phoneNumber.value,
+      ccNumber: ccNumber.value.slice(-4), // Masked CC number
+      orderDetails: orderDetails.details, // Get order details
+      totalCost: orderDetails.totalCost,
+      timestamp: serverTimestamp(), // Firebase server timestamp
+    };
+
+    // Save to database
+    savePurchaseToDatabase(userId, formData)
+      .then(() => {
+        console.log("Purchase data saved successfully");
+        // Continue with email sending and form reset
+        emailjs
+          .send("service_yrwx9x4", "template_tx9keul", formData)
+          .then((response) => {
+            console.log("Email sent successfully", response);
+            form.reset();
+            localStorage.setItem("cartItems", JSON.stringify([]));
+            window.location.href = "index.html";
+          })
+          .catch((error) => console.error("Email sending failed", error));
+      })
+      .catch((error) => console.error("Error saving purchase data:", error));
+  }
+}
+
+function getOrderDetails() {
+  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  let details = "";
+  let totalCost = 0;
+
+  cartItems.forEach((item) => {
+    let itemTotal = item.price * item.quantity;
+    totalCost += itemTotal;
+    details += `${item.title} - Quantity: ${
+      item.quantity
+    }, Price: $${item.price.toFixed(2)} each, Total: $${itemTotal.toFixed(
+      2
+    )}\n`;
+  });
+
+  return { details, totalCost: totalCost.toFixed(2) };
+}
+
+function validateCreditCardNumber(number) {
+  const regex = /^[0-9]{16}$/;
+  return regex.test(number);
+}
+
+// ***Firestore Database Logic-Testing
 // Collection ref
 const colRef = collection(db, "pokedex");
 
