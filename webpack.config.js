@@ -13,7 +13,6 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
-      // ... you can add more loaders for other file types here (e.g., images, fonts)
     ],
   },
   watch: true,
