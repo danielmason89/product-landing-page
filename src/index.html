@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./assets/pngwing.com.png"
+    />
+    <title>Pokedex - Home</title>
+    <link rel="stylesheet" href="../../css/main.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("teumzvK_dd_tm2EDs");
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-lg">
+        <a href="./index.html" class="" navbar-brand>
+          <span class="fw-bold text-secondary">
+            <img
+              class="pokedex-logo"
+              src="../../assets/pngwing.com.png"
+              alt="pokedex"
+          /></span>
+        </a>
+        <span id="purchaseMessage"></span>
+        <!-- toggle button for nav -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- navbar links -->
+        <div
+          class="collapse navbar-collapse justify-content-end align-center"
+          id="main-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link"
+                ><i class="bi bi-house-fill" style="padding-right: 0.5rem"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a href="#topics" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#reviews" class="nav-link">Reviews</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="./quiz.html" class="nav-link">Quiz</a>
+            </li>
+            <li class="nav-item">
+              <a href="./blog.html" class="nav-link">Blog</a>
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a
+                href="./signup.html"
+                class="btn btn-secondary hidden"
+                id="signup-button"
+                >Signup</a
+              >
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a
+                href="./login.html"
+                class="btn btn-secondary hidden"
+                id="login-button"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a
+                href="./index.html"
+                class="btn btn-secondary hidden"
+                id="logout-button"
+                >Logout</a
+              >
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a href="./shop.html" class="btn btn-secondary hidden" id="cart"
+                >Shop <i class="bi bi-bag-fill"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clock"></div>
+    </nav>
+    <!-- Hero Section -->
+    <main>
+      <section id="hero">
+        <div class="container-lg mt-0">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 text-center text-md-start">
+              <h1 class="font-bolder">
+                <div class="display-1">Pokedex</div>
+              </h1>
+              <p class="lead my-2 text-muted pb-4">
+                One source of Truth.<br />
+                One adventure at a Time.
+              </p>
+              <a href="./signup.html" class="btn btn-primary btn-lg"
+                >Buy Today</a
+              >
+              <a
+                href="#sidebar"
+                class="d-block mt-3"
+                data-bs-toggle="offcanvas"
+                role="button"
+                aria-controls="sidebar"
+              >
+                Explore Pokedex Today's offerings
+              </a>
+            </div>
+            <div class="col-md-5 mt-0 text-center d-none d-md-block">
+              <!-- Tooltip -->
+              <span class="tt" data-bs-placement="bottom" title="Pokedex Today">
+                <img
+                  class="img-fluid"
+                  src="../assets/header-img.png"
+                  alt="pokedex-cover"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Pricing Section -->
+      <section id="pricing" class="bg-light mt-5 py-5">
+        <div class="container-lg">
+          <div class="text-center py-2">
+            <h2 class="display-5">Pricing Plans</h2>
+            <p class="lead text-bold">Choose a Pokedex that suits You today.</p>
+          </div>
+          <div class="row my-0 align-items-center justify-content-center g-3">
+            <div class="col-8 col-lg-4 col-xl-3">
+              <div class="card border-0">
+                <div class="card-body text-center py-4">
+                  <h4 class="card-title">Pokedex SE</h4>
+                  <p class="lead card-subtitle">
+                    Johto/Hoenn/Sinnoh<br />
+                    Region Lock
+                  </p>
+                  <p class="display-5 my-4 text-primary fw-bold">$299</p>
+                  <p class="card-text mx-5 text-muted d-none d-lg-block">
+                    Genin Trainer
+                  </p>
+                  <a
+                    href="./login.html"
+                    class="btn btn-outline-primary btn-lg mt-3"
+                    >Buy Today</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-9 col-lg-4 py-5">
+              <div class="card border-primary border-2">
+                <div class="card-header text-center text-primary">
+                  Most Popular & Best Value
+                </div>
+                <div class="card-body text-center py-5">
+                  <h4 class="card-title">Pokedex S</h4>
+                  <p class="lead card-subtitle">
+                    Johto/Hoenn/Sinnoh/Unova/Kalos<br />
+                    Region Lock
+                  </p>
+                  <p class="display-4 my-4 text-primary fw-bold">$599</p>
+                  <p class="card-text mx-5 text-muted d-none d-lg-block">
+                    Chunin Trainer
+                  </p>
+                  <a
+                    href="./login.html"
+                    class="btn btn-outline-primary btn-lg mt-3"
+                    >Buy Today</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-8 col-lg-4 col-xl-3 mb-5">
+              <div class="card border-0">
+                <div class="card-body text-center py-4">
+                  <h4 class="card-title">Pokedex S+</h4>
+                  <p class="lead card-subtitle">No Region Lock</p>
+                  <p class="display-5 my-4 text-primary fw-bold">$899</p>
+                  <p class="card-text mx-5 text-muted d-none d-lg-block">
+                    Joenin Trainer
+                  </p>
+                  <a
+                    href="./login.html"
+                    class="btn btn-outline-primary btn-lg mt-3"
+                    >Buy Today</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Topics -->
+      <section id="topics">
+        <div class="container-xl my-8">
+          <div class="text-center mt-5">
+            <h2 class="display-5">Inside the Pokedex</h2>
+            <p class="lead text-muted">
+              A technological advance from which you can learn in real-time.
+            </p>
+          </div>
+          <div class="row my-1 g-2 justify-content-around align-items-center">
+            <div class="col-6 col-lg-4">
+              <img
+                src="../../assets/pngwing.com (3).png"
+                alt="Pokemon"
+                class="img-fluid"
+              />
+            </div>
+
+            <div class="col-lg-6">
+              <!-- Accordion -->
+              <div class="accordion" id="aspects">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="header-1">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#gen-1"
+                      aria-expanded="true"
+                      aria-controls="gen-1"
+                    >
+                      Pokedex SE: Begin Discovering...
+                    </button>
+                  </h2>
+                  <div
+                    id="gen-1"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="gen-1"
+                    data-bs-parent="aspects"
+                  >
+                    <div
+                      class="d-flex accordion-body text-center align-items-center justify-content-center"
+                    >
+                      <img
+                        class="img-fluid pokemon mr-5"
+                        src="../../assets/pngwing.com (5).png"
+                        alt=""
+                      />
+                      <p px-5>Best of Friends.</p>
+                      <img
+                        class="img-fluid pokemon-2 px-2"
+                        src="../../assets/pngwing.com (6).png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="header-1">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#gen-2"
+                      aria-expanded="true"
+                      aria-controls="gen-2"
+                    >
+                      Pokedex S: Continue Adventuring...
+                    </button>
+                  </h2>
+                  <div
+                    id="gen-2"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="gen-2"
+                    data-bs-parent="aspects"
+                  >
+                    <div
+                      class="d-flex accordion-body text-center align-items-center justify-content-center"
+                    >
+                      <img
+                        class="img-fluid pokemon mr-5"
+                        src="../../assets/pngwing.com (5).png"
+                        alt=""
+                      />
+                      <p px-5>Best of Friends.</p>
+                      <img
+                        class="img-fluid pokemon-2 px-2"
+                        src="../../assets/pngwing.com (6).png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="header-1">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#gen-3"
+                      aria-expanded="true"
+                      aria-controls="gen-3"
+                    >
+                      Pokedex S+: Explore Boundaries...
+                    </button>
+                  </h2>
+                  <div
+                    id="gen-3"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="gen-3"
+                    data-bs-parent="aspects"
+                  >
+                    <div
+                      class="d-flex accordion-body text-center align-items-center justify-content-center"
+                    >
+                      <img
+                        class="img-fluid pokemon mr-5"
+                        src="../../assets/pngwing.com (5).png"
+                        alt=""
+                      />
+                      <p px-5>Best of Friends.</p>
+                      <img
+                        class="img-fluid pokemon-2 px-2"
+                        src="../../assets/pngwing.com (6).png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Reviews -->
+      <section id="reviews" class="bg-altlight py-5 my-5">
+        <div class="container-lg">
+          <div class="text-center">
+            <h2 class="display-5">
+              <i class="bi bi-stars text-altdark"></i>Pokedex Customer Reviews
+            </h2>
+            <p class="lead">
+              What users have said saying about their Pokedex devices....
+            </p>
+          </div>
+          <div class="row justify-content-center my-5">
+            <div class="col-lg-8">
+              <div class="list-group list-group-flush">
+                <div class="list-group-item py-3">
+                  <div class="pb-2">
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                  </div>
+                  <h5 class="mb-1">A must buy for aspiring trainers.</h5>
+                  <p>
+                    Love it. Help me get to anther level in my gym badge
+                    collection.
+                  </p>
+                  <small>Review by Phuong Nguyen</small>
+                </div>
+                <div class="list-group-item py-3">
+                  <div class="pb-2">
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-half text-altdark"></i>
+                  </div>
+                  <h5 class="mb-1">
+                    A must buy for those lost from gym to gym.
+                  </h5>
+                  <p>Great buy. Help me with directions.</p>
+                  <small>Review by Daniel Mason</small>
+                </div>
+                <div class="list-group-item py-3">
+                  <div class="pb-2">
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-fill text-altdark"></i>
+                    <i class="bi bi-star-half text-altdark"></i>
+                  </div>
+                  <h5 class="mb-1">A must buy to find my next client.</h5>
+                  <p>
+                    Amazingly informative. Help our corporate office find our
+                    shiny mascot.
+                  </p>
+                  <small>Review by Francesca Mendoza</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Contact Form -->
+      <section id="contact">
+        <div class="container-lg">
+          <div class="text-center">
+            <h2 class="display-5">Get in Touch.</h2>
+            <p class="lead">Questions to ask? Contact us below...</p>
+          </div>
+          <div class="row justify-content-center my-4">
+            <div class="col-lg-6">
+              <form class="contact-form bg-altlight" id="contact-form">
+                <label for="email" class="form-label">Email address:</label>
+                <div class="mb-4 input-group">
+                  <span class="input-group-text">
+                    <i class="bi bi-envelope-paper"></i>
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="e.g: satoshi.tajiri99@gmail.ca"
+                    required
+                  />
+                  <span class="input-group-text">
+                    <span class="tt data-bs-placement="bottom" title="Enter a
+                    valid email address.">
+                    <i class="bi bi-question-circle text-muted"></i>
+                  </span>
+                </div>
+                <label for="name" class="form-label">Name:</label>
+                <div class="mb-4 input-group">
+                  <span class="input-group-text">
+                    <i class="bi bi-person-fill"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="e.g: Satoshi Tajiri - Full Name"
+                    required
+                  />
+                  <span class="input-group-text">
+                    <span class="tt data-bs-placement="bottom" title="Pretty
+                    self explanatory....">
+                    <i class="bi bi-question-circle text-muted"></i>
+                  </span>
+                </div>
+                <label for="subject" class="form-label"
+                  >What is your question about?</label
+                >
+                <div class="mb-5 input-group">
+                  <span class="input-group-text">
+                    <i class="bi bi-chat-right-dots-fill"></i>
+                  </span>
+                  <select id="subject" class="form-select">
+                    <option value="pricing" selected>Pricing</option>
+                    <option value="content">Content</option>
+                    <option value="other">Other..</option>
+                  </select>
+                </div>
+                <div class="form-floating mb-4 mt-5">
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    style="height: 140px"
+                    required
+                  ></textarea>
+                  <label for="message">Your question(s)...</label>
+                </div>
+                <div class="mb-4 text-center">
+                  <button type="submit" class="btn btn-secondary">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer- Get updates -->
+    <footer class="container border-top">
+      <section class="pt-5">
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3">
+            <h5>About Pokedex</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="./index.html" class="nav-link p-0 text-body-secondary"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="./blog.html" class="nav-link p-0 text-body-secondary"
+                  >Blog</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="./quiz.html" class="nav-link p-0 text-body-secondary"
+                  >Quiz</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <h5>Support</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex SE</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex S</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex S+</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Repairs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex Product Recycling</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden"
+                  >Email address</label
+                >
+                <input
+                  id="newsletter1"
+                  type="text"
+                  class="form-control"
+                  placeholder="Email address"
+                />
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-between pt-4 my-4 border-top"
+        >
+          <p>&copy; 2023 Pokedex, Inc. All rights reserved.</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://twitter.com/"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-twitter-x"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"
+                  /></svg
+              ></a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://www.instagram.com/"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-instagram"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+                  /></svg
+              ></a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://www.facebook.com/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-facebook"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"
+                  /></svg
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </footer>
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="sidebar"
+      aria-labelledby="sidebar-label"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebar-label">
+          Pokedex Today: Pokedex Plus
+        </h5>
+        <button
+          class="btn-close"
+          type="button"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <p>Welcome to Pokedex Plus, Enjoy these offerings.</p>
+        <div class="dropdown mt-3">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="plus-dropdown"
+            data-bs-toggle="dropdown"
+          >
+            Choose an Offering
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="plus-dropdown">
+            <li>
+              <a href="./quiz.html" class="dropdown-item"
+                >Completing the Pokedex Plus Quiz</a
+              >
+            </li>
+            <li>
+              <a href="./blog.html" class="dropdown-item">Checkout Our Blog</a>
+            </li>
+            <li>
+              <a href="./signup.html" class="dropdown-item"
+                >Checking new Pokemon Today products</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Toast container -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div
+        id="purchaseToast"
+        class="toast hide"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Pokedex - Purchase Status</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">
+          Thank you for your purchase! Your order has been successfully
+          processed and an email has been sent with your receipt.
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const purchaseStatus = urlParams.get("purchase");
+
+        if (purchaseStatus === "success") {
+          // Remove the query string to prevent the toast from appearing on page refresh
+          window.history.replaceState(null, null, window.location.pathname);
+          const purchaseToastEl = document.getElementById("purchaseToast");
+          if (purchaseToastEl) {
+            const purchaseToast = new bootstrap.Toast(purchaseToastEl);
+            purchaseToast.show();
+          }
+        }
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+      integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+    <script src="./bundle.js"></script>
+  </body>
+</html>

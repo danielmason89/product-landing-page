@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./assets/pngwing.com.png"
+    />
+    <title>Pokedex - Shop</title>
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="../../css/main.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("teumzvK_dd_tm2EDs");
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container-lg">
+        <a href="./index.html" class="" navbar-brand>
+          <span class="fw-bold text-secondary">
+            <img
+              class="pokedex-logo"
+              src="../../assets/pngwing.com.png"
+              alt="pokedex"
+          /></span>
+        </a>
+
+        <!-- toggle button for nav -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- navbar links -->
+        <div
+          class="collapse navbar-collapse justify-content-end align-items-center"
+          id="main-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link"
+                ><i class="bi bi-house-fill" style="padding-right: 0.5rem"></i
+              ></a>
+            </li>
+            <li>
+              <a href="./quiz.html" class="nav-link">Quiz</a>
+            </li>
+            <li class="nav-item">
+              <a href="./blog.html" class="nav-link">Blog</a>
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a
+                href="./index.html"
+                class="btn btn-secondary"
+                id="logout-button"
+                >Logout</a
+              >
+            </li>
+            <li class="nav-item ms-2 d-md-inline">
+              <a
+                href="./checkout.html"
+                class="btn btn-secondary hidden"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                type="button"
+                id="cart"
+                >Checkout <i class="bi bi-bag-fill pl-1"></i>
+                <span id="cartTotal"></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clock"></div>
+    </nav>
+    <main>
+      <div class="container text-start">
+        <header class="col-12 border-bottom mb-2">
+          <h1>Pokedex SE | Standard Edition</h1>
+          <h6>
+            Entry-level. Offers essential features for Pokémon trainers at a
+            more affordable price.
+          </h6>
+        </header>
+        <div class="container p-sm-5">
+          <div class="card">
+            <div class="row g-0">
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-se.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex SE"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-se2.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex SE"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div class="col-md-12">
+                <div class="row g-0">
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>Display: 4.7-inch LCD, 1334 x 750 resolution</li>
+                      <li>Processor: Dual-core PokéChip A1</li>
+                      <li>Storage Options: 32GB, 64GB</li>
+                      <li>
+                        Camera: 8MP rear camera with basic Pokémon recognition
+                        software
+                      </li>
+                      <li>
+                        Connectivity: Wi-Fi, Bluetooth 4.2, NFC for trainer
+                        battles
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>Memory: 2 GB RAM Storage</li>
+                      <li>Battery Life: Up to 20 hours of continuous</li>
+                      <li>
+                        Special Features: Standard Pokémon database, basic
+                        habitat maps, simple user interface
+                      </li>
+                      <li>
+                        Durability: Water-resistant, scratch-resistant screen
+                      </li>
+                      <li>
+                        Design: Compact, lightweight plastic body available in
+                        multiple colors
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 pb-2 ps-4">
+                <button
+                  class="btn btn-primary m-1 float-sm-end float-lg-none addItemBtn"
+                >
+                  Add item
+                </button>
+                <strong class="card-text">$80</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-end pt-4">
+        <header class="col-12 border-bottom mb-2">
+          <h1>Pokedex S | Superior Edition</h1>
+          <h6>
+            Mid-range. Ideal for trainers who are looking for a bit more
+            functionality without stretching their budget too far.
+          </h6>
+        </header>
+        <div class="container p-sm-5">
+          <div class="card">
+            <div class="row g-0">
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-s.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex SE"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-s2.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex SE"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div class="col-md-12">
+                <div class="row g-0">
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>Display: 5.5-inch OLED, 1920 x 1080 resolution</li>
+                      <li>Processor: Quad-core PokéChip A2</li>
+                      <li>Memory: 4 GB RAM</li>
+                      <li>Storage Options: 128GB, 256GB</li>
+                      <li>Battery Life: Up to 30 hours of continuous use</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>
+                        Special Features: Expanded Pokémon database, detailed
+                        habitat maps, real-time weather updates, voice commands
+                      </li>
+                      <li>
+                        Durability: Waterproof and dustproof, reinforced glass
+                        screen
+                      </li>
+                      <li>
+                        Camera: 12MP rear camera with advanced Pokémon
+                        recognition and tracking
+                      </li>
+                      <li>
+                        Connectivity: Wi-Fi, Bluetooth 5.0, NFC, 4G LTE support
+                      </li>
+                      <li>
+                        Design: Sleek aluminum body, available in several
+                        metallic finishes
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 pb-2">
+                  <strong class="card-text">$160</strong>
+                  <button
+                    class="btn btn-primary float-sm-start float-lg-none addItemBtn"
+                  >
+                    Add item
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-start border-bottom pt-6">
+        <header class="col-12 border-bottom mb-2">
+          <h1>Pokedex S+ | Supreme Edition</h1>
+          <h6>
+            Premium. Designed for the most dedicated and experienced Pokémon
+            trainers who demand the best technology.
+          </h6>
+        </header>
+        <div class="container p-sm-5">
+          <div class="card">
+            <div class="row g-0">
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-s+2.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex S+"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div
+                class="col-md-6 d-flex justify-content-center align-items-center p-4"
+              >
+                <img
+                  src="../assets/pokedex-s+.png"
+                  class="img-fluid rounded"
+                  alt="picture of Pokedex S+"
+                  style="max-width: 100%; height: auto"
+                />
+              </div>
+              <div class="col-md-12">
+                <div class="row g-0">
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>
+                        Display: 6.7-inch Super Retina XDR, 2778 x 1284
+                        resolution
+                      </li>
+                      <li>
+                        Processor: Octa-core PokéChip A3 with AI capabilities
+                      </li>
+                      <li>Memory: 8 GB RAM</li>
+                      <li>Storage Options: 256GB, 512GB</li>
+                      <li>
+                        Battery Life: Up to 40 hours of continuous use with fast
+                        charging
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <ul class="list-unstyled p-2">
+                      <li>
+                        Camera: 16MP rear camera with professional-grade Pokémon
+                        analysis tools, AR capabilities
+                      </li>
+                      <li>
+                        Connectivity: Wi-Fi 6, Bluetooth 5.2, NFC, 5G support
+                      </li>
+                      <li>
+                        Special Features: Comprehensive Pokémon encyclopedia,
+                        interactive 3D habitat maps,augmented reality
+                        experience, multi-language support
+                      </li>
+                      <li>
+                        Durability: Military-grade build, waterproof and
+                        shockproof
+                      </li>
+                      <li>
+                        Design: Premium build with glass and stainless steel,
+                        exclusive color options
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m-1 ps-4">
+              <button
+                class="btn btn-primary m-1 float-sm-end float-lg-none addItemBtn"
+              >
+                Add item
+              </button>
+              <strong class="card-text">$240</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Cart Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Users Basket
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="shoppingCart"></div>
+            <section
+              id="totalCostSection"
+              class="total-cost-container text-center my-4"
+            >
+              <span id="totalCost">Total Cost:</span>
+            </section>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <a type="button" href="./checkout.html" class="btn btn-primary">
+                Proceed to Checkout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Toast Notification -->
+      <div
+        id="cartToast"
+        class="toast hide mt-2"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header rounded">
+          <img src="" class="rounded me-2" alt="" />
+          <strong class="me-auto rounded"
+            >This item has been added to your cart.</strong
+          >
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+    </main>
+    <footer class="container">
+      <section class="pt-5">
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3">
+            <h5>About Pokedex</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="./index.html" class="nav-link p-0 text-body-secondary"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="./blog.html" class="nav-link p-0 text-body-secondary"
+                  >Blog</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="./quiz.html" class="nav-link p-0 text-body-secondary"
+                  >Quiz</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3 mb-3">
+            <h5>Support</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex SE</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex S</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex S+</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Repairs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Pokedex Product Recycling</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden"
+                  >Email address</label
+                >
+                <input
+                  id="newsletter1"
+                  type="text"
+                  class="form-control"
+                  placeholder="Email address"
+                />
+                <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div
+          class="d-flex flex-column flex-sm-row justify-content-between pt-4 my-4 border-top"
+        >
+          <p>&copy; 2023 Pokedex, Inc. All rights reserved.</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://twitter.com/"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-twitter-x"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"
+                  /></svg
+              ></a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://www.instagram.com/"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-instagram"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+                  /></svg
+              ></a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="https://www.facebook.com/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-facebook"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"
+                  /></svg
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+      integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.querySelectorAll(".addItemBtn").forEach((button) => {
+        button.addEventListener("click", function (event) {
+          const cartToast = new bootstrap.Toast(
+            document.getElementById("cartToast")
+          );
+          cartToast.show();
+
+          // Position the toast near the button
+          positionToastNearButton(
+            event.target,
+            document.getElementById("cartToast")
+          );
+        });
+      });
+
+      function positionToastNearButton(button, toast) {
+        const buttonRect = button.getBoundingClientRect();
+        const toastRect = toast.getBoundingClientRect();
+
+        const edgePadding = 20; // pixels for padding from the edge
+        let top =
+          window.scrollY + buttonRect.top + buttonRect.height + edgePadding;
+        let left =
+          window.scrollX +
+          buttonRect.left -
+          toastRect.width / 2 +
+          buttonRect.width / 2;
+
+        // Ensure the toast doesn't go off the right edge of the viewport
+        left = Math.min(
+          left,
+          window.innerWidth - toastRect.width - edgePadding
+        );
+
+        // Ensure the toast doesn't go off the left edge of the viewport
+        left = Math.max(left, edgePadding);
+
+        // Set the position
+        toast.style.position = "absolute";
+        toast.style.top = `${top}px`;
+        toast.style.left = `${left}px`;
+      }
+    </script>
+    <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
