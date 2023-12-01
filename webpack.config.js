@@ -28,7 +28,7 @@ let config = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/",
-    clean: true,
+    // clean: true,
   },
   devtool: "inline-source-map",
   module: {
