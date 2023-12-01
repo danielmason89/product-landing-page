@@ -55,7 +55,7 @@ let config = {
       },
       // Images/Assets
       {
-        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/i,
+        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/,
         type: "assets/resource",
       },
     ],
