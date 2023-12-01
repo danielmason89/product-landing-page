@@ -54,7 +54,7 @@ const tick = () => {
     " " +
     addOrdinalSuffix(now) +
     " / " +
-    format(now / "yyyy");
+    format(now, "yyyy");
   const formattedTime = format(now, "h:mm a");
 
   const html = `
