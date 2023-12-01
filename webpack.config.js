@@ -28,7 +28,7 @@ let config = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/",
-    // clean: true,
+    clean: true,
   },
   devtool: "inline-source-map",
   module: {
@@ -52,12 +52,22 @@ let config = {
       {
         test: /\.css$/,
         exclude: /node-modules/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       // Images/Assets
       {
         test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/i,
         type: "assets/resource",
+      },
+      // SCSS/SASS
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
     ],
   },
