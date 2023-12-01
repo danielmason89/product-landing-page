@@ -1,7 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugIn = require("copy-webpack-plugin");
+// const CopyPlugIn = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 let production = process.env.NODE_ENV === "production";
 
@@ -11,6 +13,11 @@ let config = {
     liveReload: true,
     watchFiles: ["src/**/* css/**/*"],
     static: "./dist",
+    // proxy: {
+    //   "/api": {
+    //     target: "",
+    //   },
+    // },
     open: true,
     hot: true,
   },
@@ -20,7 +27,7 @@ let config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    clean: true,
+    // clean: true,
   },
   devtool: "inline-source-map",
   module: {
@@ -34,6 +41,12 @@ let config = {
           options: { presets: ["@babel/preset-env"] },
         },
       },
+      // // HTML
+      // {
+      //   test: /\.html$/,
+      //   exclude: /node-modules/,
+      //   use: ["html-loader"],
+      // },
       // CSS
       {
         test: /\.css$/,
@@ -42,15 +55,13 @@ let config = {
       },
       // Images/Assets
       {
-        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/,
+        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/i,
         type: "assets/resource",
       },
     ],
   },
   plugins: [
-    new CopyPlugIn({
-      patterns: [{ from: "src/assets", to: "assets" }],
-    }),
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       title: "Home",
       template: path.resolve(__dirname, "src/index.html"),

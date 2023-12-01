@@ -1,4 +1,5 @@
 import { AuthErrorCodes } from "firebase/auth";
+import { format } from "date-fns";
 
 // Clock/Misc UI
 export const toolTips = document.querySelectorAll(".tt");
@@ -28,12 +29,37 @@ toolTips.forEach((t) => {
   new bootstrap.Tooltip(t);
 });
 
+// Function to add ordinal suffix to a number
+function addOrdinalSuffix(date) {
+  const dayOfMonth = date.getDate();
+  if (dayOfMonth > 3 && dayOfMonth < 21) return dayOfMonth + "th";
+  switch (dayOfMonth % 10) {
+    case 1:
+      return dayOfMonth + "st";
+    case 2:
+      return dayOfMonth + "nd";
+    case 3:
+      return dayOfMonth + "rd";
+    default:
+      return dayOfMonth + "th";
+  }
+}
+
 const tick = () => {
   const now = new Date();
 
+  // Modified format string to include the ordinal suffix
+  const formattedDate =
+    format(now, "MMMM") +
+    " " +
+    addOrdinalSuffix(now) +
+    " / " +
+    format(now, "yyyy");
+  const formattedTime = format(now, "h:mm a");
+
   const html = `
-  <span>${dateFns.format(now, "MMMM dddd Do / YY")}</span>
-  <span>${dateFns.format(now, "h:mm a")}</span>
+    <span>${formattedDate}</span>
+    <span>${formattedTime}</span>
   `;
 
   clock.innerHTML = html;

@@ -460,35 +460,35 @@ function getOrderDetails() {
   return { details, totalCost: totalCost.toFixed(2) };
 }
 
-// ***Firestore Database Logic-Testing
-// Collection ref
-const colRef = collection(db, "pokedex");
+// // ***Firestore Database Logic-Testing
+// // Collection ref
+// const colRef = collection(db, "pokedex");
 
-// queries
-const q = query(colRef, orderBy("createdAt"));
+// // queries
+// const q = query(colRef, orderBy("createdAt"));
 
-// Get Collection Data - real time collection data,(subscription)
-onSnapshot(colRef, (snapshot) => {
-  let pokedex = [];
-  snapshot.docs.forEach((doc) => {
-    pokedex.push({ ...doc.data(), id: doc.id });
-  });
-  console.log(pokedex);
-});
+// // Get Collection Data - real time collection data,(subscription)
+// onSnapshot(colRef, (snapshot) => {
+//   let pokedex = [];
+//   snapshot.docs.forEach((doc) => {
+//     pokedex.push({ ...doc.data(), id: doc.id });
+//   });
+//   console.log(pokedex);
+// });
 
-// Get Collection Data - real time collection data,(subscription) - query
-onSnapshot(q, (snapshot) => {
-  let pokedex = [];
-  snapshot.docs.forEach((doc) => {
-    pokedex.push({ ...doc.data(), id: doc.id });
-  });
-  console.log(pokedex);
-});
+// // Get Collection Data - real time collection data,(subscription) - query
+// onSnapshot(q, (snapshot) => {
+//   let pokedex = [];
+//   snapshot.docs.forEach((doc) => {
+//     pokedex.push({ ...doc.data(), id: doc.id });
+//   });
+//   console.log(pokedex);
+// });
 
-// Get a single id document
-const docRef = doc(db, "pokedex", "2X3qaNxZ7DN7WDsf9FNK");
+// // Get a single id document
+// const docRef = doc(db, "pokedex", "2X3qaNxZ7DN7WDsf9FNK");
 
-// Realtime listener
-onSnapshot(docRef, (doc) => {
-  console.log(doc.data(), doc.id);
-});
+// // Realtime listener
+// onSnapshot(docRef, (doc) => {
+//   console.log(doc.data(), doc.id);
+// });
