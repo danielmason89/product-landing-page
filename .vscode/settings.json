@@ -9,5 +9,6 @@
         "loginbtn",
         "Pokedex",
         "signup"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
