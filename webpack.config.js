@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugInPlugin = require("copy-webpack-plugin");
+// const CopyPlugIn = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
@@ -27,8 +27,7 @@ let config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/",
-    clean: true,
+    // clean: true,
   },
   devtool: "inline-source-map",
   module: {
@@ -52,34 +51,16 @@ let config = {
       {
         test: /\.css$/,
         exclude: /node-modules/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: ["style-loader", "css-loader"],
       },
       // Images/Assets
       {
-        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/i,
+        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/,
         type: "assets/resource",
-      },
-      // SCSS/SASS
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
-        ],
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-    }),
-    new CopyPlugInPlugin({
-      patterns: [
-        { from: "src/assets", to: "assets" }, // Adjust according to your asset directory structure
-      ],
-    }),
     // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       title: "Home",
