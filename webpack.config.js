@@ -12,14 +12,14 @@ let config = {
   devServer: {
     liveReload: true,
     watchFiles: ["src/**/* css/**/*"],
+    open: true,
+    hot: true,
     static: "./dist",
     // proxy: {
     //   "/api": {
     //     target: "",
     //   },
     // },
-    open: true,
-    hot: true,
   },
   entry: {
     main: path.resolve(__dirname, "src/index.js"),
@@ -27,7 +27,8 @@ let config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    // clean: true,
+    clean: true,
+    publicPath: "/",
   },
   devtool: "inline-source-map",
   module: {
@@ -38,30 +39,38 @@ let config = {
         exclude: /node-modules/,
         use: {
           loader: "babel-loader",
-          options: { presets: ["@babel/preset-env"] },
+          options: { presets: ["@babel/preset-env"], compact: false },
         },
       },
-      // // HTML
+      // *** HTML ***
       // {
       //   test: /\.html$/,
       //   exclude: /node-modules/,
       //   use: ["html-loader"],
       // },
-      // CSS
+      // *** CSS ***
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         exclude: /node-modules/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
-      // Images/Assets
       {
-        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/,
-        type: "assets/resource",
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      // *** Images/Assets ***
+      {
+        test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/i,
+        type: "asset/resource",
       },
     ],
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
     new HtmlWebpackPlugin({
       title: "Home",
       template: path.resolve(__dirname, "src/index.html"),

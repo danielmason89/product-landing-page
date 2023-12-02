@@ -8,25 +8,15 @@ import {
   formLoginBtn,
   formSignupBtn,
 } from "./ui";
+import "bootstrap/scss/bootstrap.scss";
+import "./css/main.min.css";
+import "./css/style.css";
 import addCart from "./addCart.js";
 import { renderCart } from "./shoppingCart.js";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
-import {
-  getFirestore,
-  collection,
-  onSnapshot,
-  addDoc,
-  deleteDoc,
-  query,
-  doc,
-  where,
-  orderBy,
-  serverTimestamp,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { getFirestore, serverTimestamp } from "firebase/firestore";
 import emailjs from "@emailjs/browser";
 import {
   getAuth,
@@ -265,13 +255,6 @@ $(document).ready(function () {
 // Collection ref
 const realtimeDatabase = getDatabase();
 console.log("realtimeData:", realtimeDatabase);
-// const reference = ref(realtimeDatabase, "users/" + userId);
-
-// function writeUserData(userId, email) {
-//   set(reference, {
-//     email: email,
-//   });
-// }
 
 // ***Checkout Form Validation & Firebase Realtime Database Implementation***
 function initializeFormValidation() {
@@ -459,36 +442,3 @@ function getOrderDetails() {
 
   return { details, totalCost: totalCost.toFixed(2) };
 }
-
-// // ***Firestore Database Logic-Testing
-// // Collection ref
-// const colRef = collection(db, "pokedex");
-
-// // queries
-// const q = query(colRef, orderBy("createdAt"));
-
-// // Get Collection Data - real time collection data,(subscription)
-// onSnapshot(colRef, (snapshot) => {
-//   let pokedex = [];
-//   snapshot.docs.forEach((doc) => {
-//     pokedex.push({ ...doc.data(), id: doc.id });
-//   });
-//   console.log(pokedex);
-// });
-
-// // Get Collection Data - real time collection data,(subscription) - query
-// onSnapshot(q, (snapshot) => {
-//   let pokedex = [];
-//   snapshot.docs.forEach((doc) => {
-//     pokedex.push({ ...doc.data(), id: doc.id });
-//   });
-//   console.log(pokedex);
-// });
-
-// // Get a single id document
-// const docRef = doc(db, "pokedex", "2X3qaNxZ7DN7WDsf9FNK");
-
-// // Realtime listener
-// onSnapshot(docRef, (doc) => {
-//   console.log(doc.data(), doc.id);
-// });
